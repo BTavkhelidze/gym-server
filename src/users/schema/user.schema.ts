@@ -7,6 +7,15 @@ export class User {
 
   @Prop({ type: String })
   password: string;
+
+  @Prop({ type: String })
+  firstName: string;
+
+  @Prop({ type: String })
+  lastName: string;
+
+  @Prop({ type: String })
+  avatar: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

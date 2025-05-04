@@ -37,8 +37,8 @@ export class UsersService {
     if (!isValidObjectId(id)) throw new BadRequestException('not valid id ');
     const user = await this.userModel.findByIdAndDelete(id);
     if (!user) throw new NotFoundException('user not found');
-    console.log('deleted successfully');
-    return user;
+
+    return 'deleted successfully';
   }
 
   async updateUser(id, updateUserDto) {

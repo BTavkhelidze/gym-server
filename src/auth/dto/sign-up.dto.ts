@@ -9,4 +9,12 @@ export class SignUpDto {
   @IsString()
   @Length(4, 10)
   password: string;
+
+  @IsNotEmpty()
+  @IsString()
+  firstName: string;
+
+  @IsNotEmpty()
+  @IsString()
+  lastName: string;
 }

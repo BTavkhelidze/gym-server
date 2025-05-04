@@ -14,10 +14,13 @@ export class IsAuthGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     try {
       const request = context.switchToHttp().getRequest();
+      // const token = this.getTokenFromHeader(request.headers);
+      const [, token] = request.headers['cookie']
+        .split(' ')
+        .filter((el) => el.includes('accesstoken'))[0]
+        .split('=');
 
-      const token = this.getTokenFromHeader(request.headers);
-
-      if (!token) throw new BadRequestException('token is not provided');
+      if (!token) throw new BadRequestException('token is not provided ');
 
       const payLoad = await this.jwtService.verify(token);
 
@@ -27,12 +30,5 @@ export class IsAuthGuard implements CanActivate {
     } catch (e) {
       throw new UnauthorizedException('permission dined');
     }
-  }
-
-  getTokenFromHeader(headers) {
-    const authorization = headers['authorization'];
-    if (!authorization) return null;
-    const [type, token] = authorization.split(' ');
-    return type === 'Bearer' ? token : null;
   }
 }
