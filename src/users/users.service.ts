@@ -28,7 +28,7 @@ export class UsersService {
 
   async findOne(id) {
     if (!isValidObjectId(id)) throw new BadRequestException('not valid id ');
-    const user = await this.userModel.findById(id);
+    const user = await this.userModel.findById(id).populate('membershipId');
     if (!user) throw new NotFoundException('user not found');
     return user;
   }

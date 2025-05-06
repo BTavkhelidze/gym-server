@@ -85,7 +85,7 @@ export class AuthService {
 
   async getCurrentUser(userId) {
     const user = await this.userModel.findById(userId).select('-password');
-    if (!user) throw new UnauthorizedException('Invalid User ');
+    if (!user) throw new UnauthorizedException('Invalid User');
 
     return user;
   }

@@ -15,8 +15,10 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
   }
 
   async validate(accessToken, refreshToken, profile, done) {
+    console.log(profile);
     const data = {
-      fullName: profile.displayName,
+      firstName: profile.given_name,
+      lastName: profile.family_name,
       email: profile.email,
       avatar: profile.picture,
     };
