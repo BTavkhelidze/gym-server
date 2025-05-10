@@ -7,11 +7,15 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule } from '@nestjs/config';
 import { GoogleStrategy } from './strategies/google.strategy';
 import { PassportModule } from '@nestjs/passport';
+import { MemberShipSchema } from 'src/membership/schema/membership.schema';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
+    MongooseModule.forFeature([
+      { name: 'User', schema: UserSchema },
+      { name: 'Membership', schema: MemberShipSchema },
+    ]),
     PassportModule.register({ defaultStrategy: 'google' }),
     JwtModule.register({
       global: true,

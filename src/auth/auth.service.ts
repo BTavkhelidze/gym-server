@@ -84,7 +84,11 @@ export class AuthService {
   }
 
   async getCurrentUser(userId) {
-    const user = await this.userModel.findById(userId).select('-password');
+    const user = await this.userModel
+      .findById(userId)
+      .select('-password')
+      .populate('membershipId');
+
     if (!user) throw new UnauthorizedException('Invalid User');
 
     return user;

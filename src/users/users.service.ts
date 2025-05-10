@@ -30,7 +30,7 @@ export class UsersService {
     if (!isValidObjectId(id)) throw new BadRequestException('not valid id ');
     const user = await this.userModel.findById(id).populate('membershipId');
     if (!user) throw new NotFoundException('user not found');
-    return user;
+    return { status: 200, data: user };
   }
 
   async delete(id) {
