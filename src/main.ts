@@ -8,6 +8,7 @@ async function bootstrap() {
   app.enableCors({
     origin: 'https://gym-front-seven.vercel.app',
     credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'],
   });
   app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe());
