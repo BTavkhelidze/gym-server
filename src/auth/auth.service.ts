@@ -54,7 +54,7 @@ export class AuthService {
       httpOnly: true,
       secure: true,
       maxAge: 60 * 60 * 2 * 1000,
-      sameSite: 'None',
+      sameSite: 'none',
       path: '/',
     });
 
