@@ -72,13 +72,14 @@ export class AuthService {
       expiresIn: '1h',
     });
 
-    response.cookie('accesstoken', accessToken, {
-      httpOnly: true,
-      secure: true,
-      maxAge: 60 * 60 * 2 * 1000,
-      sameSite: 'None',
-      path: '/',
-    });
+    response.cookie('accessToken', accessToken, {
+  httpOnly: true,
+  secure: true, 
+  maxAge: 60 * 60 * 2 * 1000, 
+  sameSite: 'none', 
+  domain: "gym-front-seven.vercel.app", 
+  path: '/',
+});
 
     response.redirect(`${process.env.FRONT_URI}/dashboard/home`);
   }
